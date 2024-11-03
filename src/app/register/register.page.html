@@ -1,0 +1,104 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="#"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondo">
+  <ion-grid class="singup-container">
+    <ion-row class="cont-titulo ion-justify-content-center">
+      <ion-col size="12" class="ion-text-start">
+        <ion-title><strong>¡Crea tu cuenta!</strong></ion-title>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="cont-singup ion-justify-content-center">
+      <ion-col size="12" class="ion-text-start">
+        <ion-list lines="none" class="form">
+
+          <!-- Nombre de usuario -->
+          <ion-item>
+            <ion-input label="Nombre:" type="text" [(ngModel)]="nombre" required></ion-input>
+            <ion-icon slot="end" name="person-circle-outline"></ion-icon>
+          </ion-item>
+          
+          <!-- RUT del usuario -->
+          <ion-item>
+            <ion-input label="RUT:" placeholder="sin puntos y con -" type="text" [(ngModel)]="rut" required></ion-input>
+            <ion-icon slot="end" name="finger-print-outline"></ion-icon>
+          </ion-item>
+
+          <!-- Campo para la fecha de nacimiento -->
+          <ion-item>
+            <ion-label slot="start">Fecha de Nacimiento:</ion-label>
+            <ion-input display-format="YYYY-MM-DD" placeholder="YYYY-MM-DD" [(ngModel)]="fechaNacimiento" required></ion-input> <!-- Cambié a ionBlur para abrir el calendario -->
+            <ion-icon slot="end" name="calendar-outline"></ion-icon>
+          </ion-item>   
+
+          <!-- Correo electrónico del usuario -->
+          <ion-item>
+            <ion-input label="Correo:" type="email" [(ngModel)]="mailuser" required></ion-input>
+            <ion-icon slot="end" name="at-outline"></ion-icon>
+          </ion-item>
+
+          <!-- Celular del usuario -->
+          <ion-item>
+            <ion-input label="Celular:" type="tel" placeholder="+569" [(ngModel)]="celular" required></ion-input>
+            <ion-icon slot="end" name="call-outline"></ion-icon>
+          </ion-item>
+
+          <!-- Campo para seleccionar la región -->
+          <ion-item>
+            <ion-label>Region:</ion-label>
+            <ion-select [(ngModel)]="region" (ionChange)="onRegionChange()" placeholder = 'Seleccione su región' required>
+              <ion-select-option *ngFor="let region of regionId" [value]="region.Id_Region">{{ region.Nombre_Region }}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+          <!-- Campo para seleccionar la comuna -->
+          <ion-item>
+            <ion-label>Comuna:</ion-label>
+            <ion-select [(ngModel)]="comuna" placeholder = 'Seleccione su comuna' required>
+              <ion-select-option *ngFor="let comuna of comunaId" [value]="comuna.Id_Comuna">{{ comuna.Nombre_Comuna }}</ion-select-option>
+            </ion-select>                      
+          </ion-item>
+  
+          
+          <!-- Contraseña del usuario -->
+          <ion-item>
+            <ion-input label="Contraseña:" type="password" [(ngModel)]="password" required></ion-input>
+            <ion-icon slot="end" name="key-outline"></ion-icon>
+          </ion-item>
+
+          <!-- Confirmación de contraseña -->
+          <ion-item>
+            <ion-input label="Confirmar Contraseña:" [type]="showPassword ? 'text' : 'password'" [(ngModel)]="ConfirmPassword" required></ion-input>
+            <ion-icon slot="end" name="{{showPassword ? 'eye-off-outline' : 'eye-outline'}}" (click)="togglePassword()"></ion-icon>
+          </ion-item>
+          
+          <!-- Campo para aceptar términos y condiciones -->
+          <ion-row class="A1 ion-align-items-center">
+            <ion-col size="12">
+              <p>
+                He leído y acepto los
+                <ion-checkbox [(ngModel)]="AceptaCondiciones" required></ion-checkbox>
+                <strong><a class="acuerdo" href="#">términos y condiciones</a></strong>
+              </p>
+            </ion-col>
+          </ion-row>
+
+          <!-- Botón para crear la cuenta -->
+          <ion-row class="ion-justify-content-center">
+            <ion-col size="12" class="ion-text-center">
+              <ion-button class="botonA2" expand="block" (click)="SingUp()"><strong>Crear Cuenta</strong></ion-button>
+            </ion-col>
+          </ion-row>
+
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

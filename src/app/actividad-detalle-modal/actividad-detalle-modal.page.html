@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar color="dark">
+    <ion-title>Detalles de Actividad</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <!-- Sección de encabezado de la actividad -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>{{ actividad.Nom_Actividad }}</ion-card-title>
+    </ion-card-header>
+    
+    <ion-card-content>
+      <p><strong>Descripción:</strong> {{ actividad.Desc_Actividad }}</p>
+      <p><strong>Dirección:</strong> {{ actividad.Direccion_Actividad }}</p>
+      <p><strong>Categoría:</strong> {{ actividad.Nom_Categoria }}</p>
+      <p><strong>Subcategoría:</strong> {{ actividad.Nom_SubCategoria }}</p>
+      <p><strong>Jugadores:</strong> Máximo {{ actividad.Cantidad_MaxJugador }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Sección de horario de la actividad -->
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Lapso de inscripción</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p><strong>Fecha:</strong> {{ actividad.Fecha_TER_Actividad | date:'mediumDate' }}</p>
+      <p><strong>Hora de Inicio:</strong> {{ actividad.Fecha_INI_Actividad | date:'shortTime' }}</p>
+      <p><strong>Hora de Término:</strong> {{ actividad.Fecha_TER_Actividad | date:'shortTime' }}</p>
+    </ion-card-content>
+  </ion-card>
+
+  <!-- Botón de acción al final -->
+  <div class="ion-text-center ion-padding">
+    <ion-button color="secondary" expand="block" (click)="volver()">Volver</ion-button>
+    <ion-button color="success" expand="block" (click)="inscribir()">Unirse</ion-button>
+  </div>
+</ion-content>
