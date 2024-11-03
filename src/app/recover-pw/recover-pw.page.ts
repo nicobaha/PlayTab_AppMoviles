@@ -11,6 +11,7 @@ export class RecoverPwPage implements OnInit {
 
   rut: string = '';
   mailuser: string = '';
+  password: string = '';
   showPassword = false;
   AceptaCondiciones: boolean = false;
 
@@ -29,9 +30,13 @@ export class RecoverPwPage implements OnInit {
     await alert.present();
   }
 
+  togglePassword() {
+    this.showPassword = !this.showPassword;
+  }
+
   RecoverPW() {
     // Validar si todos los campos están llenos
-    if (!this.rut || !this.mailuser) {
+    if (!this.rut || !this.mailuser || !this.password) {
       this.presentAlert('Faltan rellenar campos');
       return;
     }
