@@ -12,23 +12,6 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <h1 class="actividades-rapidas">Actividades Rápidas</h1>
-  <ion-card *ngFor="let actividad of actividadesAleatorias; let i = index" [ngClass]="coloresActividades[i]" (click)="onCardClick(actividad)">
-    <ion-card-header>
-      <img class="img" [src]="actividad.Url || 'assets/portrait/nocover.jpg'" alt="{{ actividad.Nom_Actividad }}" />
-      <div class="card-title-container">
-        <ion-card-title>{{ actividad.Nom_Actividad }}</ion-card-title>
-      </div>
-      <ion-card-subtitle>{{ actividad.Fecha_INI_Actividad | date:'short' }}</ion-card-subtitle>
-    </ion-card-header>
-  
-    <ion-card-content>
-      <p>{{ actividad.Nom_SubCategoria }}</p>
-      <p>{{ actividad.Desc_Actividad }}</p>
-      <p>Dirección: {{ actividad.Direccion_Actividad }}</p>
-      <p>Jugadores: {{ actividad.Cantidad_MaxJugador }}</p>
-    </ion-card-content>
-  </ion-card>
 
   <h1 class="actividades-rapidas">¿Cómo estará el clima para tu actividad?</h1>
   <ion-card *ngIf="weatherData">
@@ -46,6 +29,24 @@
     <ion-card-header>
       <ion-card-title>Cargando clima...</ion-card-title>
     </ion-card-header>
+  </ion-card>
+
+  <h1 class="actividades-rapidas">Actividades Rápidas</h1>
+  <ion-card *ngFor="let actividad of actividadesAleatorias; let i = index" [ngClass]="coloresActividades[i]" (click)="onCardClick(actividad)">
+    <ion-card-header>
+      <img class="img" [src]="actividad.Url || 'assets/portrait/nocover.jpg'" alt="{{ actividad.Nom_Actividad }}" />
+      <div class="card-title-container">
+        <ion-card-title>{{ actividad.Nom_Actividad }}</ion-card-title>
+      </div>
+      <ion-card-subtitle>{{ actividad.Fecha_INI_Actividad | date:'short' }}</ion-card-subtitle>
+    </ion-card-header>
+  
+    <ion-card-content>
+      <p>{{ actividad.Nom_SubCategoria }}</p>
+      <p>{{ actividad.Desc_Actividad }}</p>
+      <p>Dirección: {{ actividad.Direccion_Actividad }}</p>
+      <p>Jugadores: {{ actividad.Cantidad_MaxJugador }}</p>
+    </ion-card-content>
   </ion-card>
   
 </ion-content>
