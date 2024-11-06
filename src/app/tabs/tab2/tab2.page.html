@@ -29,7 +29,16 @@
         <img class="img" [src]="actividad.Url || 'assets/portrait/nocover.jpg'" alt="{{ actividad.Nom_Actividad }}" />
         <p>{{ actividad.Nom_SubCategoria }}</p>
         <p>{{ actividad.Desc_Actividad }}</p>
-        <p>Dirección: {{ actividad.Direccion_Actividad }}</p>
+        <p *ngIf="actividad.Direccion_Actividad === 'N/A'">
+          Dirección: {{ actividad.Direccion_Actividad }}
+        </p>
+        <a *ngIf="actividad.Direccion_Actividad !== 'N/A'" 
+           [href]="actividad.Direccion_Actividad" 
+           target="_blank" 
+           rel="noopener noreferrer">
+          Dirección: {{ actividad.Direccion_Actividad }}
+        </a>
+        
         <p>Jugadores: {{ actividad.Cantidad_MaxJugador }}</p>
       </ion-card-content>
     </ion-card>
