@@ -19,10 +19,14 @@
       <ion-card-title>{{ weatherData.name }}</ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      <p>Temperatura: {{ weatherData.main.temp }} °C</p>
-      <p>Descripción: {{ weatherData.weather[0].description }}</p>
-      <p>Humedad: {{ weatherData.main.humidity }}%</p>
-      <img *ngIf="weatherIconUrl" [src]="weatherIconUrl" alt="Icono del clima" />
+      <div class="weather-info">
+        <div class="weather-details">
+          <p>Temperatura: {{ weatherData.main.temp }} °C</p>
+          <p>Descripción: {{ weatherData.weather[0].description }}</p>
+          <p>Humedad: {{ weatherData.main.humidity }}%</p>
+        </div>
+        <img *ngIf="weatherIconUrl" [src]="weatherIconUrl" alt="Icono del clima" class="weather-icon" />
+      </div>
     </ion-card-content>
   </ion-card>
   <ion-card *ngIf="!weatherData">

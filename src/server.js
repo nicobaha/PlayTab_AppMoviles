@@ -199,7 +199,7 @@ app.get('/cantidad', (req, res) => {
 // Endpoint para obtener todas las actividades
 app.get('/actividades', (req, res) => {
   const { Id_Comuna } = req.query;
-  const query = 'SELECT a.Id_Actividad, a.Nom_Actividad, a.Fecha_INI_Actividad, a.Fecha_TER_Actividad, a.Desc_Actividad, a.Direccion_Actividad, m.Cantidad_MaxJugador, s.Nom_SubCategoria, C.Nom_Categoria, i.Url FROM ACTIVIDAD a INNER JOIN maxjugador m ON a.Id_Maxjugador = m.Id_Maxjugador INNER JOIN subcategoria s ON s.Id_SubCategoria = a.Id_SubCategoria INNER JOIN CATEGORIA C ON s.Id_Categoria = C.Id_Categoria LEFT JOIN imagen i ON s.Id_SubCategoria = i.Id_SubCategoria WHERE a.Id_Comuna = ?;';
+  const query = 'SELECT a.Id_Actividad, u.Nom_User, a.Nom_Actividad, a.Fecha_INI_Actividad, a.Fecha_TER_Actividad, a.Desc_Actividad, a.Direccion_Actividad, m.Cantidad_MaxJugador, s.Nom_SubCategoria, C.Nom_Categoria, i.Url FROM ACTIVIDAD a Inner Join usuario u on a.Id_Anfitrion_Actividad = u.Id_User INNER JOIN maxjugador m ON a.Id_Maxjugador = m.Id_Maxjugador INNER JOIN subcategoria s ON s.Id_SubCategoria = a.Id_SubCategoria INNER JOIN CATEGORIA C ON s.Id_Categoria = C.Id_Categoria LEFT JOIN imagen i ON s.Id_SubCategoria = i.Id_SubCategoria WHERE a.Id_Comuna = ? AND Fecha_TER_Actividad>=now();';
   db.query(query, [Id_Comuna], (err, results) => {
     if (err) {
       console.error('Error al obtener actividades:', err);
@@ -228,6 +228,23 @@ app.post('/participante', (req, res) => {
       return res.status(500).json({ error: 'Error al insertar participante' });
     }
     res.status(201).json({ message: 'Participante registrado exitosamente' });
+  });
+});
+
+//Eliminar Usuario
+app.delete('/borrarUser/:Id_User', (req, res) => {
+  const Id_User = req.params.Id_User;
+  const deleteQuery = 'DELETE FROM USUARIO WHERE Id_User = ?';
+
+  db.query(deleteQuery, [Id_User], (err, result) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).send('Error al eliminar el usuario >:(');
+    } else if (result.affectedRows === 0) {
+      return res.status(404).send('Usuario no encontrado :(');
+    } else {
+      res.status(200).json({ message: 'Usuario eliminado con éxito :D' });
+    }
   });
 });
 
