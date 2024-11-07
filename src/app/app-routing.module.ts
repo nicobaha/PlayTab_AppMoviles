@@ -55,9 +55,14 @@ const routes: Routes = [
     canActivate:[authGuard]
   },
   {
-    path: '**',
-    loadChildren: () => import('./e404/e404.module').then( m => m.E404PageModule)
+    path: 'reset-password/:token', 
+    loadChildren: () => import('./reset-password/reset-password.module').then(m => m.ResetPasswordPageModule)
   },
+  {
+    path: '**',
+    loadChildren: () => import('./e404/e404.module').then(m => m.E404PageModule)
+  }
+
 ];
 
 @NgModule({
